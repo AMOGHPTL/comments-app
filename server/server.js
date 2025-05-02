@@ -56,6 +56,11 @@ app.patch("/comments/:id/edit",(req,res)=>{
     res.send(newComment);
 })
 
+app.delete("/comments/:id",(req,res)=>{
+    const id = parseInt(req.params.id);
+    comments = comments.filter(c=>c.id !== id);
+})
+
 app.post("/comments/new",(req,res)=>{
     const newComment = req.body;
     comments.push({"id":comments.length+1,...newComment});

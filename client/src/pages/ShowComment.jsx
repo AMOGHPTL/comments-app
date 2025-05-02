@@ -26,6 +26,12 @@ const ShowComment = () => {
     fetchComment();
   }, [id]);
 
+  const handleDelete = async () => {
+    const deleteComment = await axios.delete(
+      `http://localhost:5000/comments/${id}`
+    );
+  };
+
   return (
     <div className="comment-container">
       {loading && <p>Loading comment...</p>}
@@ -47,6 +53,9 @@ const ShowComment = () => {
       <a href="/comments/new">Add new comment</a>
       <br />
       <a href={`/comments/${comment.id}/edit`}>Edit</a>
+      <form onSubmit={handleDelete} action="/comments">
+        <button>delete</button>
+      </form>
     </div>
   );
 };
