@@ -11,7 +11,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const comments = [
+let comments = [
 {    "id":1,    
     "username":"nick",
     "comment":"hello guys"
@@ -40,6 +40,21 @@ app.get("/comments/:id", (req, res) => {
     
     res.json(comment);
 });
+
+app.get("/comments/:id/edit",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const comment = comments.find(c => c.id === id);
+    res.json(comment);
+})
+
+
+app.patch("/comments/:id/edit",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const newComment = req.body;
+    const comment = comments.find(c => c.id === id);
+    comment.comment = newComment.comment;
+    res.send(newComment);
+})
 
 app.post("/comments/new",(req,res)=>{
     const newComment = req.body;

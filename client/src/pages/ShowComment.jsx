@@ -36,12 +36,17 @@ const ShowComment = () => {
           <p>
             <strong>user: </strong> {comment.username}
           </p>
-          <p><strong>Comment: </strong>{comment.comment}</p>
+          <p>
+            <strong>Comment: </strong>
+            {comment.comment}
+          </p>
         </div>
       )}
       <a href="/comments">show all</a>
       <br />
       <a href="/comments/new">Add new comment</a>
+      <br />
+      <a href={`/comments/${comment.id}/edit`}>Edit</a>
     </div>
   );
 };
